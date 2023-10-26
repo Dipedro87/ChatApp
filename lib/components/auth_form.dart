@@ -58,19 +58,20 @@ class _AuthFormState extends State<AuthForm> {
                 UserImagePicker(
                   onImagePick: _handleImagePick,
                 ),
-              TextFormField(
-                key: const ValueKey('name'),
-                initialValue: _formData.name,
-                onChanged: (name) => _formData.name = name,
-                decoration: const InputDecoration(labelText: 'Nome'),
-                validator: (localName) {
-                  final name = localName ?? '';
-                  if (name.trim().length < 5) {
-                    return 'Nome deve ter no mínimo 5 caracteres.';
-                  }
-                  return null;
-                },
-              ),
+              if (_formData.isSignup)
+                TextFormField(
+                  key: const ValueKey('name'),
+                  initialValue: _formData.name,
+                  onChanged: (name) => _formData.name = name,
+                  decoration: const InputDecoration(labelText: 'Nome'),
+                  validator: (localName) {
+                    final name = localName ?? '';
+                    if (name.trim().length < 5) {
+                      return 'Nome deve ter no mínimo 5 caracteres.';
+                    }
+                    return null;
+                  },
+                ),
               TextFormField(
                 key: const ValueKey('email'),
                 initialValue: _formData.email,
@@ -79,7 +80,7 @@ class _AuthFormState extends State<AuthForm> {
                 validator: (localEmail) {
                   final email = localEmail ?? '';
                   if (!email.contains('@')) {
-                    return 'E-mail informado não é válido.';
+                    return 'E-mail nformado não é válido.';
                   }
                   return null;
                 },
