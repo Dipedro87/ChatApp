@@ -14,9 +14,9 @@ class MessageBubble extends StatelessWidget {
     super.key,
   });
 
-  Widget _showUserImage(String? imageURL) {
+  Widget _showUserImage(String imageUrl) {
     ImageProvider? provider;
-    final uri = Uri.parse(imageURL!);
+    final uri = Uri.parse(imageUrl);
 
     if (uri.path.contains(_defaultImage)) {
       provider = const AssetImage(_defaultImage);
@@ -61,10 +61,7 @@ class MessageBubble extends StatelessWidget {
                 vertical: 10,
                 horizontal: 16,
               ),
-              margin: const EdgeInsets.symmetric(
-                vertical: 15,
-                horizontal: 8,
-              ),
+              margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
               child: Column(
                 crossAxisAlignment: belongsToCurrentUser
                     ? CrossAxisAlignment.end
@@ -94,7 +91,7 @@ class MessageBubble extends StatelessWidget {
           top: 0,
           left: belongsToCurrentUser ? null : 165,
           right: belongsToCurrentUser ? 165 : null,
-          child: _showUserImage(message.userImageURL),
+          child: _showUserImage(message.userImageUrl),
         ),
       ],
     );

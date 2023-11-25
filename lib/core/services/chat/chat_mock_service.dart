@@ -5,18 +5,21 @@ import 'package:chat_app/core/models/chat_user.dart';
 import 'package:chat_app/core/services/chat/chat_service.dart';
 import 'dart:async';
 
-class ChatMockervice implements ChatService {
+class ChatMockService implements ChatService {
   static final List<ChatMessage> _msgs = [];
+
   static MultiStreamController<List<ChatMessage>>? _controller;
   static final _msgsStream = Stream<List<ChatMessage>>.multi((controller) {
     _controller = controller;
     controller.add(_msgs);
   });
 
+  @override
   Stream<List<ChatMessage>> messagesStream() {
     return _msgsStream;
   }
 
+  @override
   Future<ChatMessage> save(String text, ChatUser user) async {
     final newMessage = ChatMessage(
       id: Random().nextDouble().toString(),
@@ -24,7 +27,7 @@ class ChatMockervice implements ChatService {
       createdAt: DateTime.now(),
       userId: user.id,
       userName: user.name,
-      userImageURL: user.imageUrl,
+      userImageUrl: user.imageUrl,
     );
     _msgs.add(newMessage);
     _controller?.add(_msgs.reversed.toList());
