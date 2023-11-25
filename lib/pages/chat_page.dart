@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:chat_app/components/messages.dart';
 import 'package:chat_app/components/new_message.dart';
-import 'package:chat_app/core/models/chat_notification.dart';
 import 'package:chat_app/core/services/auth/auth_service.dart';
 import 'package:chat_app/core/services/notification/chat_notification_service.dart';
 import 'package:chat_app/pages/notification_page.dart';
@@ -16,7 +13,7 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat Principal'),
+        title: const Text('Cod3r Chat'),
         actions: [
           DropdownButtonHideUnderline(
             child: DropdownButton(
@@ -49,23 +46,21 @@ class ChatPage extends StatelessWidget {
           Stack(
             children: [
               IconButton(
+                icon: const Icon(Icons.notifications),
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (ctx) {
-                        return const NotificationPage();
-                      },
-                    ),
+                    MaterialPageRoute(builder: (ctx) {
+                      return const NotificationPage();
+                    }),
                   );
                 },
-                icon: const Icon(Icons.notifications),
               ),
               Positioned(
                 top: 5,
                 right: 5,
                 child: CircleAvatar(
                   maxRadius: 10,
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.red.shade800,
                   child: Text(
                     '${Provider.of<ChatNotificationService>(context).itemsCount}',
                     style: const TextStyle(
@@ -89,15 +84,13 @@ class ChatPage extends StatelessWidget {
       // floatingActionButton: FloatingActionButton(
       //   child: const Icon(Icons.add),
       //   onPressed: () {
-      //     Provider.of(
+      //     Provider.of<ChatNotificationService>(
       //       context,
       //       listen: false,
-      //     ).add(
-      //       ChatNotification(
-      //         title: 'Mais uma notificação!',
-      //         body: Random().nextDouble().toString(),
-      //       ),
-      //     );
+      //     ).add(ChatNotification(
+      //       title: 'Mais uma notificação!',
+      //       body: Random().nextDouble().toString(),
+      //     ));
       //   },
       // ),
     );
