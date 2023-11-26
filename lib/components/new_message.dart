@@ -17,6 +17,7 @@ class _NewMessageState extends State<NewMessage> {
     final user = AuthService().currentUser;
 
     if (user != null) {
+      // ignore: unused_local_variable
       final msg = await ChatService().save(_message, user);
       _messageController.clear();
     }
